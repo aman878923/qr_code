@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Text to QR Code Generator</title>
+    <style>
+      /* Inline CSS styles */
+      .container {
+        max-width: 400px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      textarea {
+        width: 100%;
+        height: 100px;
+        margin-bottom: 10px;
+      }
+
+      button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      #qrcode {
+        margin-top: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <textarea id="textInput" placeholder="Enter text here"></textarea>
+      <button onclick="generateQR()">Generate QR Code</button>
+      <div id="qrcode"></div>
+    </div>
+
+    <!-- QRCode.js library embedded using a script tag -->
+    <script src="qrcode.min.js"></script>
+
+    <script>
+      // JavaScript code
+      function generateQR() {
+        var textInput = document.getElementById("textInput").value;
+        if (textInput.trim() === "") {
+          alert("Please enter some text.");
+          return;
+        }
+
+        let qrCode = new QRCode(document.getElementById("qrcode"), textInput);
+      }
+    </script>
+  </body>
+</html>
